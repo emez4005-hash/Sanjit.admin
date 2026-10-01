@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sanjit.io | Admin Login</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+
+      font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      color: #ffffff;
+
+      background:
+        radial-gradient(
+          circle at 10% 10%,
+          rgba(6, 182, 212, 0.20),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at 90% 90%,
+          rgba(99, 102, 241, 0.20),
+          transparent 35%
+        ),
+        #020617;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 430px;
+    }
+
+    .login-card {
+      padding: 35px;
+
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 26px;
+
+      background: rgba(15, 23, 42, 0.82);
+
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+
+      box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.45);
+    }
+
+    .logo {
+      width: 70px;
+      height: 70px;
+
+      margin: 0 auto 22px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #06b6d4,
+          #6366f1
+        );
+
+      font-size: 28px;
+      font-weight: 900;
+
+      box-shadow:
+        0 12px 30px rgba(6, 182, 212, 0.25);
+    }
+
+    .title {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+
+      color: #cbd5e1;
+
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .field input {
+      width: 100%;
+
+      padding: 14px 15px;
+
+      border: 1px solid #334155;
+      border-radius: 12px;
+
+      outline: none;
+
+      background: #0b1220;
+      color: #ffffff;
+
+      font-size: 15px;
+
+      transition: 0.25s ease;
+    }
+
+    .field input::placeholder {
+      color: #64748b;
+    }
+
+    .field input:focus {
+      border-color: #06b6d4;
+
+      box-shadow:
+        0 0 0 3px rgba(6, 182, 212, 0.12);
+    }
+
+    .login-btn {
+      width: 100%;
+
+      padding: 14px 18px;
+
+      border: none;
+      border-radius: 12px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #06b6d4,
+          #6366f1
+        );
+
+      color: #ffffff;
+
+      font-size: 16px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition: 0.25s ease;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 12px 30px rgba(99, 102, 241, 0.25);
+    }
+
+    .login-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    #message {
+      min-height: 22px;
+
+      margin-top: 18px;
+
+      text-align: center;
+
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .back-link {
+      display: block;
+
+      margin-top: 24px;
+
+      text-align: center;
+
+      color: #94a3b8;
+
+      text-decoration: none;
+
+      font-size: 14px;
+
+      transition: 0.2s ease;
+    }
+
+    .back-link:hover {
+      color: #ffffff;
+    }
+
+    .security-note {
+      margin-top: 25px;
+
+      padding-top: 18px;
+
+      border-top: 1px solid #1e293b;
+
+      text-align: center;
+
+      color: #64748b;
+
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 480px) {
+
+      body {
+        padding: 15px;
+      }
+
+      .login-card {
+        padding: 26px 20px;
+        border-radius: 22px;
+      }
+
+      .title {
+        font-size: 24px;
+      }
+
+      .logo {
+        width: 62px;
+        height: 62px;
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login-container">
+
+    <div class="login-card">
+
+      <div class="logo">
+        S
+      </div>
+
+      <h1 class="title">
+        Admin Login
+      </h1>
+
+      <p class="subtitle">
+        Sign in to manage your
+        <strong>Sanjit.io</strong> website.
+      </p>
+
+
+      <form id="loginForm">
+
+        <div class="field">
+
+          <label for="email">
+            Admin Email
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            value="emez4005@gmail.com"
+            autocomplete="email"
+            required
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="password">
+            Password
+          </label>
+
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required
+          >
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="login-btn"
+          id="loginBtn"
+        >
+          Login to Dashboard
+        </button>
+
+      </form>
+
+
+      <div id="message"></div>
+
+
+      <a
+        href="index.html"
+        class="back-link"
+      >
+        ← Back to Sanjit.io
+      </a>
+
+
+      <div class="security-note">
+        🔐 Secure admin access powered by Supabase
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+  <script>
+
+    /* ==========================================
+       SUPABASE CONFIG
+       ========================================== */
+
+    const SUPABASE_URL =
+      "https://wvjehxwrxhaweeuyoutg.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_GbuX_e4VWI_ZPZZiAIzfxA_ylVarJKt";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+
+
+    /* ==========================================
+       ADMIN CONFIG
+       ========================================== */
+
+    const ADMIN_EMAIL =
+      "emez4005@gmail.com";
+
+
+    /* ==========================================
+       ELEMENTS
+       ========================================== */
+
+    const loginForm =
+      document.getElementById("loginForm");
+
+    const loginBtn =
+      document.getElementById("loginBtn");
+
+    const message =
+      document.getElementById("message");
+
+
+    /* ==========================================
+       CHECK EXISTING LOGIN
+       ========================================== */
+
+    async function checkExistingSession() {
+
+      const {
+        data: {
+          session
+        }
+      } = await supabaseClient
+        .auth
+        .getSession();
+
+
+      if (!session || !session.user) {
+        return;
+      }
+
+
+      const email =
+        session.user.email || "";
+
+
+      if (
+        email.toLowerCase() ===
+        ADMIN_EMAIL.toLowerCase()
+      ) {
+
+        window.location.href =
+          "admin-dashboard.html";
+
+      }
+
+    }
+
+
+    checkExistingSession();
+
+
+    /* ==========================================
+       ADMIN LOGIN
+       ========================================== */
+
+    loginForm.addEventListener(
+      "submit",
+      async function (event) {
+
+        event.preventDefault();
+
+
+        const email =
+          document
+            .getElementById("email")
+            .value
+            .trim();
+
+
+        const password =
+          document
+            .getElementById("password")
+            .value;
+
+
+        /* Admin email check */
+
+        if (
+          email.toLowerCase() !==
+          ADMIN_EMAIL.toLowerCase()
+        ) {
+
+          message.textContent =
+            "Access denied. Admin account required.";
+
+          message.style.color =
+            "#f87171";
+
+          return;
+        }
+
+
+        /* Loading */
+
+        loginBtn.disabled = true;
+
+        loginBtn.textContent =
+          "Signing in...";
+
+        message.textContent = "";
+
+
+        /* Supabase login */
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient
+            .auth
+            .signInWithPassword({
+              email: email,
+              password: password
+            });
+
+
+        /* Error */
+
+        if (error) {
+
+          message.textContent =
+            error.message;
+
+          message.style.color =
+            "#f87171";
+
+          loginBtn.disabled = false;
+
+          loginBtn.textContent =
+            "Login to Dashboard";
+
+          return;
+        }
+
+
+        /* User check */
+
+        if (
+          !data ||
+          !data.user
+        ) {
+
+          message.textContent =
+            "Login failed. Please try again.";
+
+          message.style.color =
+            "#f87171";
+
+          loginBtn.disabled = false;
+
+          loginBtn.textContent =
+            "Login to Dashboard";
+
+          return;
+        }
+
+
+        /* Final admin verification */
+
+        if (
+          data.user.email.toLowerCase() !==
+          ADMIN_EMAIL.toLowerCase()
+        ) {
+
+          await supabaseClient
+            .auth
+            .signOut();
+
+
+          message.textContent =
+            "You are not authorized as admin.";
+
+          message.style.color =
+            "#f87171";
+
+          loginBtn.disabled = false;
+
+          loginBtn.textContent =
+            "Login to Dashboard";
+
+          return;
+        }
+
+
+        /* Success */
+
+        message.textContent =
+          "Login successful. Opening dashboard...";
+
+        message.style.color =
+          "#4ade80";
+
+
+        setTimeout(function () {
+
+          window.location.href =
+            "admin-dashboard.html";
+
+        }, 500);
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
